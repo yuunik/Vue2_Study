@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="app">
+    账户：<input type="text" v-model="account"> <br><br>
+    密码：<input type="password" v-model="password"> <br><br>
+    <button v-on:click="login">登录</button>
+    <button @click="reset">重置</button>
+</div>
+<script src="./vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            account: "",
+            password: ""
+        },
+        methods: {
+            login () {
+                alert("恭喜您成功登录!请在后台查看您的账户与密码.");
+                console.log("您的账户是" + this.account);
+                console.log("您的密码是" + this.password);
+            },
+            reset () {
+                this.account = "";
+                this.password = "";
+            }
+        }
+    })
+</script>
+</body>
+</html>

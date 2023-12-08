@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study trip</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="index--" v-show="index > 0">上一页</button>
+        <br/>
+        <img :src="imgUrlArr[index]" alt="">
+        <br/>
+        <button @click="index++" v-show="index < imgUrlArr.length - 1">下一页</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script type="text/javascript">
+        // 取消 Vue 生产提示
+        Vue.config.productionTip = false;
+
+        // 创建 Vue 实例
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                index: 0,
+                imgUrlArr: [
+                    "./imgs/11-00.gif",
+                    "./imgs/11-01.gif",
+                    "./imgs/11-02.gif",
+                    "./imgs/11-03.gif",
+                    "./imgs/11-04.png",
+                    "./imgs/11-05.png"
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
