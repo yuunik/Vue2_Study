@@ -23,7 +23,9 @@ const router = new VueRouter({
             path: "/friend",
             component: MyFriend
         }
-    ]
+    ],
+    linkActiveClass: "active",
+    linkExactActiveClass: "exact-active"
 });
 
 // 暴露路由
