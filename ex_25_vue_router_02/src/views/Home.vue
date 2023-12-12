@@ -2,8 +2,8 @@
   <div class="home">
     <div class="logo-box"></div>
     <div class="search-box">
-      <input type="text">
-      <button>搜索一下</button>
+      <input v-model="inpValue" type="text">
+      <button @click="goSearch">搜索一下</button>
     </div>
     <div class="hot-link">
       热门搜索：
@@ -16,7 +16,55 @@
 
 <script>
 export default {
-  name: 'FindMusic'
+  name: 'FindMusic',
+  data() {
+    return {
+      inpValue: ""
+    }
+  },
+  methods: {
+    goSearch() {
+      // 路径跳转
+      // 1） 简写
+      // this.$router.push(`/search?key=${this.inpValue}`);
+      // 2)  完整写法
+      // 查询参数传参
+      // this.$router.push({
+      //   path: "/search",
+      //   query: {
+      //     key: this.inpValue
+      //   }
+      // });
+
+      // 动态路由传参
+      // 1) 简写
+      // this.$router.push(`/search/${this.inpValue}`);
+      // 2) 完整写法
+      // this.$router.push({
+      //   path: `/search/${this.inpValue}`
+      // });
+
+      // 命名路由跳转
+      // this.$router.push({
+      //   name: "search"
+      // });
+      // 1 - 查询参数传参
+      // this.$router.push({
+      //   name: "search",
+      //   query: {
+      //     key: this.inpValue
+      //   }
+      // });
+      // 2 - 动态路由传参
+      this.$router.push({
+        name: "search",
+        params: {
+          words: this.inpValue
+        }
+      })
+
+    }
+  }
 }
 </script>
 

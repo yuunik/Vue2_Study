@@ -11,10 +11,10 @@ const router = new VueRouter({
   mode: "history",
   routes: [
     // 路由重定向
-    { path: "/", redirect: "/search" },
-    { path: '/home', component: Home },
+    { name: "root", path: "/", redirect: "/home" },
+    { name: "home", path: '/home', component: Home },
     // 若动态路由传参后面没有可选符 ? ,则该参数为必传值。没有该参数，则不会显示对应的页面组件
-    { path: '/search/:words?', component: Search },
+    { name: "search", path: '/search/:words?', component: Search },
     // Vue 路由 - 404， 用于处理 404 页面
     { path: "*", component: NotFound }
   ]
