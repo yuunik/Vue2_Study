@@ -1,6 +1,8 @@
 // 引入 Vue、Vuex
 import Vue from 'vue'
 import Vuex from 'vuex'
+import user from '@/store/modules/user'
+import settings from '@/store/modules/settings'
 
 // 插件安装
 Vue.use(Vuex)
@@ -10,8 +12,16 @@ const store = new Vuex.Store({
   // 开启严格模式
   strict: true,
   state: {
-    title: '大标题',
-    count: 100
+    title: '仓库大标题',
+    count: 100,
+    list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  actions: {
+    changeCountAction (context, number) {
+      setTimeout(() => {
+        context.commit('changeCount', number)
+      }, 1000)
+    }
   },
   mutations: {
     addCount (state, n) {
@@ -26,6 +36,17 @@ const store = new Vuex.Store({
     changeCount (state, newCount) {
       state.count = newCount
     }
+  },
+  // 类似于计算属性
+  getters: {
+    filterList (state) {
+      return state.list.filter(item => item > 5)
+    }
+  },
+  // 模块
+  modules: {
+    user,
+    settings
   }
 })
 

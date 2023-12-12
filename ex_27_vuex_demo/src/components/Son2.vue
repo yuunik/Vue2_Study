@@ -6,20 +6,36 @@
     <button @click="subCount(1)">值 - 1</button>
     <button @click="subCount(5)">值 - 5</button>
     <button @click="subCount(10)">值 - 10</button>
+    <button @click="changeCountAction(666)">一秒后修改为 666 </button>
     <button @click="changeTitle('FontEnd')">修改标题</button>
+    <hr/>
+    <h1>{{ user.userInfo.name }}</h1>
+    <h2>{{ userInfo.age }}</h2>
+    <h3>{{ theme }}</h3>
+    <h4>{{ desc }}</h4>
+    <hr>
+    <h1>{{ userInfo }}</h1>
+    <button @click="setUserInfo({ name: 'lisi', age: 30})">更新个人信息</button>
+    <h1>{{ theme }}</h1>
+    <button @click="setTheme('blue')">修改主题颜色</button>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Son2Com',
   computed: {
-    ...mapState(['title', 'count'])
+    ...mapState(['title', 'count', 'user', 'settings']),
+    ...mapState('user', ['userInfo', 'address']),
+    ...mapState('settings', ['theme', 'desc'])
   },
   methods: {
-    ...mapMutations(['subCount', 'changeTitle'])
+    ...mapMutations(['subCount', 'changeTitle']),
+    ...mapActions(['changeCountAction']),
+    ...mapMutations('user', ['setUserInfo']),
+    ...mapMutations('settings', ['setTheme'])
   }
 }
 </script>

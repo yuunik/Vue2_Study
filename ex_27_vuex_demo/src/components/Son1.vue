@@ -7,23 +7,50 @@
     <button @click="handleAdd(5)">值 + 5</button>
     <button @click="handleAdd(10)">值 + 10</button>
     <button @click="changeTitle">修改标题</button>
+    <h1>get state by mapGetters</h1>
+    <h2>{{ filterList }}</h2>
+    <hr>
+    <h1>{{ UpperCaseTheme }}</h1>
+    <hr>
+    <h1>{{ $store.state.user.userInfo }}</h1>
+    <button @click="changeUserInfo">更新个人信息</button>
+    <button @click="updateUserInfo">一秒后更新个人信息</button>
+    <h1>{{ $store.state.settings.theme }}</h1>
+    <button @click="changeTheme">更新主题颜色</button>
+    <button @click="updateTheme">一秒后更新主题颜色</button>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
+import { up } from 'yarn/lib/cli'
 
 export default {
   name: 'Son1Com',
   computed: {
-    ...mapState(['count', 'title'])
+    ...mapState(['count', 'title']),
+    ...mapGetters(['filterList']),
+    ...mapGetters('settings', ['UpperCaseTheme'])
   },
   methods: {
+    up,
     handleAdd (value) {
       this.$store.commit('addCount', value)
     },
     changeTitle () {
       this.$store.commit('changeTitle', 'chorria')
+    },
+    changeUserInfo () {
+      this.$store.commit('user/setUserInfo', { name: 'chow', age: 10 })
+    },
+    changeTheme () {
+      this.$store.commit('settings/setTheme', 'dark')
+    },
+    updateUserInfo () {
+      this.$store.dispatch('user/updateUserInfo', { name: 'xxxx', age: 33 })
+    },
+    updateTheme () {
+      this.$store.dispatch('settings/updateTheme', 'orange')
     }
   }
 }

@@ -5,6 +5,14 @@
     <Son1></Son1>
     <hr>
     <Son2></Son2>
+    <hr>
+    <h1>get state by getters</h1>
+    <h2>{{ $store.getters.filterList.join('、') }}</h2>
+    <hr>
+    <!--  访问模块的 state  -->
+    <h1>{{ $store.state.user.userInfo.name }}</h1>
+    <hr>
+    <h1>{{ $store.getters['settings/UpperCaseTheme'] }}</h1>
   </div>
 </template>
 
